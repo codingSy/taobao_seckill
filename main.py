@@ -10,10 +10,8 @@ from seckill.seckill_taobao import ChromeDrive
 def run_killer(txt, txt2):
     seckill_time = txt.get()
     password = str(txt2.get())
-    print(seckill_time, password)
+    print("抢购时间:{}".format(seckill_time, password))
     ChromeDrive(seckill_time = seckill_time, password = password).sec_kill()
-
-
 
 def main():
     win = Tk()
@@ -28,13 +26,13 @@ def main():
     lbl = Label(win, text = "开抢时间：", width = 8, height = 2)
     lbl.grid(column = 0, row = 0)
     start_time = StringVar()
-    txt = Entry(win, textvariable = start_time, width = 18)
+    txt = Entry(win, textvariable = start_time, width = 24)
     txt.grid(column = 1, row = 0)
     start_time.set(str(datetime.datetime.now()))
 
     lbl2 = Label(win, text = "支付密码：", width = 8, height = 2)
     lbl2.grid(column = 0, row = 1)
-    txt2 = Entry(win, width = 18, show = '*')
+    txt2 = Entry(win, width = 24, show = '*')
     txt2.grid(column = 1, row = 1)
 
     b1 = Button(win, text = '开始', command = lambda: run_killer(txt, txt2))
@@ -53,7 +51,7 @@ def main():
     txt4.config(font = 'Helvetica -10 bold', fg = 'red')
     txt4.place(x = 10, y = 140)
 
-    txt5 = Label(win, text = '3、开抢时间必须是 %Y-%m-%d %H:%M:%S 形式，如2020-12-29 12:10:15' )
+    txt5 = Label(win, text = '3、开抢时间必须是 %Y-%m-%d %H:%M:%S.%f 形式，如2020-12-29 12:10:15.800000' )
     txt5.config(font = 'Helvetica -10 bold', fg = 'red')
     txt5.place(x=10, y=160)
 
@@ -72,6 +70,10 @@ def main():
     txt9 = Label(win, text = '7、如果想手动付款，输入开抢时间后不用输入支付密码，直接点开始就可以了')
     txt9.config(font = 'Helvetica -10 bold', fg = 'red')
     txt9.place(x = 10, y = 240)
+
+    txt10 = Label(win, text = '8、cmd执行 chrome.exe --remote-debugging-port=9999 --user-data-dir="C:\selenum\AutomationProfile"')
+    txt10.config(font = 'Helvetica -10 bold', fg = 'red')
+    txt10.place(x = 10, y = 240)
     win.mainloop()
 
 
